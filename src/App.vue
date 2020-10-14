@@ -1,26 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="my-app"></div>
+  <!-- <CounterView /> -->
+  <!-- <counter-view></counter-view> -->
+  <myComponent v-bind:counter="counter"></myComponent>
+  <counter-controller @on-increment="handleIncrement($event)"></counter-controller>
+  <!-- <counter-controller @on-increment="handleIncrement"></counter-controller> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import CounterView from "./components/CounterView";
+import CounterController from "./components/CounterController";
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    myComponent: CounterView,
+    CounterController,
+  },
+  data() {
+    return {
+      counter: 10,
+    };
+  },
+  methods: {
+    handleIncrement(inc) {
+      this.counter += inc;
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
