@@ -1,0 +1,11 @@
+import axios from "axios";
+
+export function fetchResources() {
+  return axios.get("/api/resources").then((res) => {
+    return res.data;
+  });
+}
+
+export function updateResource(id, resource) {
+  return axios.patch(`/api/resources/${id}`, resource).then((res) => res.data);
+}
